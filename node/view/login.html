@@ -1,12 +1,12 @@
 <html>
-<head>
-  <title>login page</title>
-</head>
+  <head>
+    <title>login page</title>
+  </head>
+  <body>
   <script src="/popper/umd/popper.min.js"></script>
   <script src="/jquery/jquery.min.js"></script>
   <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-  <body>
     <div class="container">
       <div class="row">
         <div class="col-sm-7 col-md-7 col-lg-5 mx-auto">
@@ -21,12 +21,22 @@
                   <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                   <label for="inputPassword">Password</label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button>
               </form>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <button type="button" onClick="createSession()">Session Create</button>
+    <button type="button" onClick="resetSession()">Session Reset</button>
+    <script>
+    const createSession = () => {
+      fetch('/login', {method: "POST"})
+    }
+    const resetSession = () => {
+      fetch('/logout', {method: "POST"})
+    }
+  </script>
   </body>
 </html>

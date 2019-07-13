@@ -2,6 +2,7 @@ web-server:
   image: node:12.5.0
   ports:
     - "80:80"
+    - "443:443"
   volumes:
     - ./node:/node
   working_dir: /node/

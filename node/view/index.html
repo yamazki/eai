@@ -1,0 +1,48 @@
+<html>
+  <title>main page</title>
+  <body>
+    <script src="/popper/umd/popper.min.js"></script>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/split-js/split.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <!-- Navbar -->
+    <nav id="navbar">
+      <nav class="navbar navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">Navbar</a>
+      </nav>
+    </nav>
+    <div class="container-fluid">
+      <div class="row h-75 no-gutters">
+        <div class="col border" id="left-sidebar">
+          left
+        </div>
+        <div class="col border" id="center">
+          center
+        </div>
+        <div class="col border" id="right-sidebar">
+          right
+        </div>
+      </div>
+    </div>
+  <script>
+    Split(["#left-sidebar","#center","#right-sidebar"], {
+          elementStyle: function (dimension, size, gutterSize) { 
+              $(window).trigger('resize'); // Optional
+              return {'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'}
+          },
+          gutterStyle: function (dimension, gutterSize) { return {'flex-basis':  gutterSize + 'px'} },
+          sizes: [20,60,20],
+          gutterSize: 2,
+          cursor: 'col-resize'
+        });
+  </script>
+  <style>
+    .split {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;overflow-y: auto;overflow-x: hidden;}
+    .gutter {background-color: transparent;background-repeat: no-repeat;background-position: 50%;}
+    .gutter.gutter-horizontal {cursor: col-resize;background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg=='); }
+    .gutter.gutter-vertical {cursor: row-resize;background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII='); }
+    .split.split-horizontal, .gutter.gutter-horizontal { height: 100%;float: left;} 
+  </style>
+  </body>
+</html>
