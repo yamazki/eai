@@ -4,12 +4,14 @@ const sessionConfirm = require('./lib/login').sessionConfirm;
 const app = express()
 const fs = require('fs');
 const https = require('https');
+const jstreeData = require('./lib/jstree-data');
 
 // ライブラリのパス
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/popper', express.static(__dirname + '/node_modules/popper.js/dist/'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
-app.use('/split-js', express.static(__dirname + '/node_modules/split.js/dist/'));
+app.use('/jstree', express.static(__dirname + '/node_modules/jstree/dist/'));
+app.use('/split.js', express.static(__dirname + '/node_modules/split.js/dist/'));
 app.use(express.static('public'));
 const port = 80;
 
@@ -25,6 +27,8 @@ app.use(session({
 app.get('/home' , (req, res) => {
   res.sendFile( __dirname + '/view/index.html'); 
 });
+
+app.get('/api/jstree-data', jstreeData.retrunJstreeData);
 
 app.get('/login' , (req, res) => {
   //req.session.test = 'test';
@@ -43,7 +47,7 @@ app.post('/logout' , (req, res) => {
   res.redirect('/login');
 });
 
-app.use('/', sessionConfirm); 
+//app.use('/', sessionConfirm); 
 
 app.get('/', (req, res) => {
   res.sendFile( __dirname + '/view/index.html'); 
